@@ -5,6 +5,7 @@ use ieee.numeric_std.all;
 enitity serial is
 	port (
 	clk 	: in std_logic;
+	rst		: in std_logic;
 	char 	: in std_logic_vector(7 downto 0);
 	send 	: in std_logic;
 	output	: out std_logic;
@@ -16,7 +17,7 @@ architecture rtl of serial is
 	constant START : std_logic_vector(3 downto 0) := "0001";
 	constant BIT0  : std_logic_vector(3 downto 0) := "0010";
 	constant BIT1  : std_logic_vector(3 downto 0) := "0011";
-        constant BIT2  : std_logic_vector(3 downto 0) := "0100";
+    constant BIT2  : std_logic_vector(3 downto 0) := "0100";
 	constant BIT3  : std_logic_vector(3 downto 0) := "0101";
 	constant BIT4  : std_logic_vector(3 downto 0) := "0110";
 	constant BIT5  : std_logic_vector(3 downto 0) := "0111";
@@ -30,7 +31,7 @@ architecture rtl of serial is
 	constant DIVISOR : natural := 5208;
 	signal counter   : std_logic_vector(12 downto 0) := (others => '0');
 begin
-	busy <= '1' when state = IDLE else '0';
+	busy <= '1' when (state = IDLE) else '0';
 	
 	p_next_state : process (clk)
 	begin
