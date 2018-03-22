@@ -5,7 +5,6 @@ use ieee.numeric_std.all;
 enitity serial is
 	port (
 	clk 	: in std_logic;
-	rst		: in std_logic;
 	char 	: in std_logic_vector(7 downto 0);
 	send 	: in std_logic;
 	output	: out std_logic;
