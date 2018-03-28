@@ -2,17 +2,16 @@ library ieee;
 use ieee.std_logic_1164.all;
 use ieee.numeric_std.all;
 
-enitity serial is
+entity bcd_counter is
 	port (
-	clk 		: in std_logic;
-	rst			: in std_logic;
+	clk 		   : in std_logic;
 	increment 	: in std_logic;
 	digit0 		: out std_logic_vector(3 downto 0) := (others => '0');
 	digit1		: out std_logic_vector(3 downto 0) := (others => '0');
 	digit2 		: out std_logic_vector(3 downto 0) := (others => '0'));
-end serial;
+end bcd_counter;
 
-architecture rtl of serial is
+architecture rtl of bcd_counter is
 	
 begin
 	
@@ -21,7 +20,7 @@ begin
 		if rising_edge(clk) then
 			if (increment = '1') then
 				if (digit0 /= "1001") then
-					digit0 <= digit0 + 1; 
+					digit0 <= std_logic_vector(unsigned(digit0) + 1); 
 				else
 					digit0 <= (others => '0');
 		
