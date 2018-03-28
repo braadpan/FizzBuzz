@@ -25,14 +25,14 @@ architecture rtl of serial is
 	constant BIT7  : std_logic_vector(3 downto 0) := "1001";
 	constant STOP  : std_logic_vector(3 downto 0) := "1010";
 
-	signal state  : std_logic_vector(3 downto 0);
-	signal char_s : std_logic_vector(7 downto 0);
+	signal state  : std_logic_vector(3 downto 0) := IDLE;
+	signal char_s : std_logic_vector(7 downto 0) := (others => '0');
 
 	constant DIVISOR : natural := 5208;
 	--signal counter   : std_logic_vector(12 downto 0) := (others => '0');
 
 begin
-	busy <= '1' when (state = IDLE) else '0';
+	busy <= '0' when (state = IDLE) else '1';
 
 	p_next_state : process(clk)
 		variable counter : integer := 0;
@@ -51,6 +51,8 @@ begin
 					counter := 0;
 					if (state /= STOP) then
 						state <= std_logic_vector(unsigned(state) + 1);
+					else 
+						state <= IDLE;
 					end if;
 				end if;
 			end if;
@@ -80,7 +82,7 @@ begin
 				output <= char_s(6);
 			when BIT7 =>
 				output <= char_s(7);
-			when others => output <= '0';
+			when others => output <= '1';
 		end case;
 	end process;
 

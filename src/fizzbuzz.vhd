@@ -78,8 +78,16 @@ begin
 				if (digit2 = "0001" and digit1 = "0000" and digit0 = "0000") then
 					state <= DONE;
 				else
-					--mod3 <= "00" when (mod3 = "10") else std_logic_vector(unsigned(mod3) + 1);
-					--mod5 <= "000" when (mod5 = "100") else std_logic_vector(unsigned(mod5) + 1);
+					if (mod3 = "10") then
+						mod3 <= "00";
+					else
+						mod3 <= std_logic_vector(unsigned(mod3) + 1);
+					end if;
+					if (mod5 = "100") then
+						mod5 <= "000";
+					else
+						mod5 <= std_logic_vector(unsigned(mod5) + 1);
+					end if;
 					state <= "0001";    -- Start output with state 1
 				end if;
 			elsif (serial_busy /= '1' and serial_send /= '1') then
