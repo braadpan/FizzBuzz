@@ -99,6 +99,7 @@ set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to FPGA_CLK3_50
 # GPIO
 #============================================================
 set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to GPIO_0[0]
+set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to GPIO_0_0
 set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to GPIO_0[1]
 set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to GPIO_0[2]
 set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to GPIO_0[3]
@@ -391,6 +392,7 @@ set_location_assignment PIN_AH7 -to ARDUINO_RESET_N
 set_location_assignment PIN_V11 -to FPGA_CLK1_50
 set_location_assignment PIN_Y13 -to FPGA_CLK2_50
 set_location_assignment PIN_E11 -to FPGA_CLK3_50
+set_location_assignment PIN_V12 -to GPIO_0_0
 set_location_assignment PIN_V12 -to GPIO_0[0]
 set_location_assignment PIN_E8 -to GPIO_0[1]
 set_location_assignment PIN_W12 -to GPIO_0[2]

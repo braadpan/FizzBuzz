@@ -7,7 +7,7 @@ entity top is
 		FPGA_CLK1_50 : in  std_logic;
 		KEY          : in  std_logic_vector(1 downto 0);
 		LED          : out std_logic_vector(7 downto 0);
-		GPIO_0       : out std_logic_vector(35 downto 0));
+		GPIO_0_0     : out std_logic);
 end top;
 
 architecture structure of top is
@@ -31,7 +31,7 @@ begin
 		port map(
 			clk    => FPGA_CLK1_50,
 			led    => LED,
-			output => GPIO_0(0));
+			output => GPIO_0_0);
 			
 	c_sfl : component sfl
 		port map(
