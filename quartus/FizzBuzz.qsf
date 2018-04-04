@@ -518,10 +518,12 @@ set_location_assignment PIN_W20 -to SW[3]
 set_global_assignment -name QSYS_FILE ip/sfl.qsys
 set_global_assignment -name SDC_FILE FizzBuzz.sdc
 set_global_assignment -name VHDL_FILE ../src/top.vhd
-set_global_assignment -name VHDL_FILE ../src/serial.vhd
-set_global_assignment -name VHDL_FILE ../src/fizzbuzz.vhd
-set_global_assignment -name VHDL_FILE ../src/bcd_counter.vhd
-set_global_assignment -name VHDL_FILE ../src/fizzbuzz_tb.vhd
+set_global_assignment -name VHDL_FILE ../src/fizzbuzz/serial.vhd
+set_global_assignment -name VHDL_FILE ../src/fizzbuzz/fizzbuzz.vhd
+set_global_assignment -name VHDL_FILE ../src/fizzbuzz/bcd_counter.vhd
+set_global_assignment -name VERILOG_FILE ../src/i2c/i2c_controller.v
+set_global_assignment -name VERILOG_FILE ../src/i2c/i2c_hdmi_config.v
+set_global_assignment -name VERILOG_FILE ../src/i2c/i2c_write_data.v
 set_global_assignment -name ENABLE_OCT_DONE OFF
 set_global_assignment -name ENABLE_CONFIGURATION_PINS OFF
 set_global_assignment -name ENABLE_BOOT_SEL_PIN OFF
