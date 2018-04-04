@@ -18,13 +18,23 @@ architecture structure of top is
 			led    : out std_logic_vector(7 downto 0);
 			output : out std_logic);
 	end component;
+	
+	component sfl is
+		port (
+			noe_in : in std_logic := 'X'  -- noe
+		);
+	end component sfl;
 
 begin
 
-	c_fizzbuzz : fizzbuzz
+	c_fizzbuzz : component fizzbuzz
 		port map(
 			clk    => FPGA_CLK1_50,
 			led    => LED,
 			output => GPIO_0(0));
+			
+	c_sfl : component sfl
+		port map(
+			noe_in => '0'); -- Enable the Serial Flash Loader IP
 
 end structure;
