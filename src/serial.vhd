@@ -59,7 +59,7 @@ begin
 		end if;
 	end process;
 
-	p_output : process(state)
+	p_output : process(all)
 	begin
 		case (state) is
 			when IDLE =>
