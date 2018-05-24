@@ -99,7 +99,6 @@ set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to FPGA_CLK3_50
 # GPIO
 #============================================================
 set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to GPIO_0[0]
-set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to GPIO_0_0
 set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to GPIO_0[1]
 set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to GPIO_0[2]
 set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to GPIO_0[3]
@@ -136,27 +135,27 @@ set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to GPIO_0[33]
 set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to GPIO_0[34]
 set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to GPIO_0[35]
 set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to GPIO_1[0]
-set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to GPIO_1[1]
+set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to LCD_DATA[7]
 set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to GPIO_1[2]
-set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to GPIO_1[3]
+set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to LCD_DATA[6]
 set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to GPIO_1[4]
-set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to GPIO_1[5]
+set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to LCD_DATA[5]
 set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to GPIO_1[6]
-set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to GPIO_1[7]
+set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to LCD_DATA[4]
 set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to GPIO_1[8]
-set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to GPIO_1[9]
+set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to LCD_DATA[3]
 set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to GPIO_1[10]
-set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to GPIO_1[11]
+set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to LCD_DATA[2]
 set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to GPIO_1[12]
-set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to GPIO_1[13]
+set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to LCD_DATA[1]
 set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to GPIO_1[14]
-set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to GPIO_1[15]
+set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to LCD_DATA[0]
 set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to GPIO_1[16]
-set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to GPIO_1[17]
+set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to LCD_E
 set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to GPIO_1[18]
-set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to GPIO_1[19]
+set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to LCD_RW
 set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to GPIO_1[20]
-set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to GPIO_1[21]
+set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to LCD_RS
 set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to GPIO_1[22]
 set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to GPIO_1[23]
 set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to GPIO_1[24]
@@ -392,7 +391,6 @@ set_location_assignment PIN_AH7 -to ARDUINO_RESET_N
 set_location_assignment PIN_V11 -to FPGA_CLK1_50
 set_location_assignment PIN_Y13 -to FPGA_CLK2_50
 set_location_assignment PIN_E11 -to FPGA_CLK3_50
-set_location_assignment PIN_V12 -to GPIO_0_0
 set_location_assignment PIN_V12 -to GPIO_0[0]
 set_location_assignment PIN_E8 -to GPIO_0[1]
 set_location_assignment PIN_W12 -to GPIO_0[2]
@@ -430,27 +428,27 @@ set_location_assignment PIN_AA26 -to GPIO_0[33]
 set_location_assignment PIN_AA13 -to GPIO_0[34]
 set_location_assignment PIN_AA11 -to GPIO_0[35]
 set_location_assignment PIN_Y15 -to GPIO_1[0]
-set_location_assignment PIN_AC24 -to GPIO_1[1]
+set_location_assignment PIN_AC24 -to LCD_DATA[7]
 set_location_assignment PIN_AA15 -to GPIO_1[2]
-set_location_assignment PIN_AD26 -to GPIO_1[3]
+set_location_assignment PIN_AD26 -to LCD_DATA[6]
 set_location_assignment PIN_AG28 -to GPIO_1[4]
-set_location_assignment PIN_AF28 -to GPIO_1[5]
+set_location_assignment PIN_AF28 -to LCD_DATA[5]
 set_location_assignment PIN_AE25 -to GPIO_1[6]
-set_location_assignment PIN_AF27 -to GPIO_1[7]
+set_location_assignment PIN_AF27 -to LCD_DATA[4]
 set_location_assignment PIN_AG26 -to GPIO_1[8]
-set_location_assignment PIN_AH27 -to GPIO_1[9]
+set_location_assignment PIN_AH27 -to LCD_DATA[3]
 set_location_assignment PIN_AG25 -to GPIO_1[10]
-set_location_assignment PIN_AH26 -to GPIO_1[11]
+set_location_assignment PIN_AH26 -to LCD_DATA[2]
 set_location_assignment PIN_AH24 -to GPIO_1[12]
-set_location_assignment PIN_AF25 -to GPIO_1[13]
+set_location_assignment PIN_AF25 -to LCD_DATA[1]
 set_location_assignment PIN_AG23 -to GPIO_1[14]
-set_location_assignment PIN_AF23 -to GPIO_1[15]
+set_location_assignment PIN_AF23 -to LCD_DATA[0]
 set_location_assignment PIN_AG24 -to GPIO_1[16]
-set_location_assignment PIN_AH22 -to GPIO_1[17]
+set_location_assignment PIN_AH22 -to LCD_E
 set_location_assignment PIN_AH21 -to GPIO_1[18]
-set_location_assignment PIN_AG21 -to GPIO_1[19]
+set_location_assignment PIN_AG21 -to LCD_RW
 set_location_assignment PIN_AH23 -to GPIO_1[20]
-set_location_assignment PIN_AA20 -to GPIO_1[21]
+set_location_assignment PIN_AA20 -to LCD_RS
 set_location_assignment PIN_AF22 -to GPIO_1[22]
 set_location_assignment PIN_AE22 -to GPIO_1[23]
 set_location_assignment PIN_AG20 -to GPIO_1[24]
@@ -516,14 +514,11 @@ set_location_assignment PIN_W24 -to SW[1]
 set_location_assignment PIN_W21 -to SW[2]
 set_location_assignment PIN_W20 -to SW[3]
 set_global_assignment -name QSYS_FILE ip/sfl.qsys
-set_global_assignment -name SDC_FILE FizzBuzz.sdc
+set_global_assignment -name SDC_FILE fizzbuzz.sdc
 set_global_assignment -name VHDL_FILE ../src/top.vhd
-set_global_assignment -name VHDL_FILE ../src/fizzbuzz/serial.vhd
+set_global_assignment -name VHDL_FILE ../src/lcd/lcd.vhd
 set_global_assignment -name VHDL_FILE ../src/fizzbuzz/fizzbuzz.vhd
 set_global_assignment -name VHDL_FILE ../src/fizzbuzz/bcd_counter.vhd
-set_global_assignment -name VERILOG_FILE ../src/i2c/i2c_controller.v
-set_global_assignment -name VERILOG_FILE ../src/i2c/i2c_hdmi_config.v
-set_global_assignment -name VERILOG_FILE ../src/i2c/i2c_write_data.v
 set_global_assignment -name ENABLE_OCT_DONE OFF
 set_global_assignment -name ENABLE_CONFIGURATION_PINS OFF
 set_global_assignment -name ENABLE_BOOT_SEL_PIN OFF

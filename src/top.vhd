@@ -5,66 +5,54 @@ use ieee.numeric_std.all;
 entity top is
 	port(
 		FPGA_CLK1_50 : in  std_logic;
-		KEY          : in  std_logic_vector(1 downto 0);
-		LED          : out std_logic_vector(7 downto 0);
-		GPIO_0_0     : out std_logic;
 		
-      HDMI_I2C_SCL : inout std_logic;
-      HDMI_I2C_SDA : inout std_logic;
-      HDMI_I2S 	 : inout std_logic;
-      HDMI_LRCLK 	 : inout std_logic;
-      HDMI_MCLK 	 : inout std_logic;
-      HDMI_SCLK    : inout std_logic;
-      HDMI_TX_CLK  : out std_logic;
-      HDMI_TX_D	 : out std_logic_vector(23 downto 0);
-      HDMI_TX_DE   : out std_logic;
-      HDMI_TX_HS   : out std_logic;
-      HDMI_TX_INT  : in std_logic;
-      HDMI_TX_VS 	 : out std_logic);
+		--KEY          : in  std_logic_vector(1 downto 0);
+		LED          : out std_logic_vector(7 downto 0);
+		
+		LCD_E        : out std_logic := '0';
+		LCD_RS       : out std_logic := '0';
+		LCD_RW       : out std_logic := '0';
+		LCD_DATA     : out std_logic_vector(7 downto 0) := (others => '0'));
 end top;
 
 architecture structure of top is
-
-	component fizzbuzz
-		port(
-			clk    : in  std_logic;
-			led    : out std_logic_vector(7 downto 0);
-			output : out std_logic);
-	end component;
 	
-	component i2c_hdmi_config
-		port(
-			iCLK   		: in std_logic;
-			iRST_N 		: in std_logic;
-			I2C_SCLK 	: out std_logic;
-		   I2C_SDAT 	: inout std_logic;
-		   HDMI_TX_INT : in std_logic;
-			READY			: out std_logic);
-	end component;
-		
 	component sfl is
 		port (
 			noe_in : in std_logic := 'X'  -- noe
 		);
 	end component sfl;
-
+	
+	signal char		 : std_logic_vector(7 downto 0);
+	signal send      : std_logic;
+	signal newline   : std_logic;
+    signal increment : std_logic;
+	signal busy      : std_logic;
+	
 begin
+    increment <= '0';
 
-	c_fizzbuzz : component fizzbuzz
+	c_fizzbuzz : entity work.fizzbuzz
 		port map(
-			clk    => FPGA_CLK1_50,
-			led    => LED,
-			output => GPIO_0_0);
+			clk       => FPGA_CLK1_50,
+			led       => LED,
+			char      => char,
+			send      => send,
+			newline   => newline,
+            increment => increment,
+			busy      => busy);
 			
-	c_i2c_hdmi_config : component i2c_hdmi_config
-	port map(
-		iCLK   		=> FPGA_CLK1_50,
-		iRST_N 		=> '1',
-		I2C_SCLK 	=> HDMI_I2C_SCL,
-		I2C_SDAT 	=> HDMI_I2C_SDA,
-		HDMI_TX_INT => HDMI_TX_INT,
-		READY       => open);
-
+	c_lcd : entity work.lcd
+		port map(
+			clk      => FPGA_CLK1_50,
+			char     => char,
+			send     => send,
+			newline  => newline,
+			busy     => busy,
+			lcd_e    => LCD_E,
+			lcd_rs   => LCD_RS,
+			lcd_rw   => LCD_RW,
+			lcd_data => LCD_DATA);
 			
 	c_sfl : component sfl
 		port map(

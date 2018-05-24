@@ -1,6 +1,7 @@
 library ieee;
 use ieee.std_logic_1164.all;
 use ieee.numeric_std.all;
+use ieee.std_logic_unsigned.all;
 
 entity bcd_counter is
 	port(
@@ -20,17 +21,17 @@ begin
 		if rising_edge(clk) then
 			if (increment = '1') then
 				if (digit0 /= "1001") then
-					digit0 <= std_logic_vector(unsigned(digit0) + 1);
+					digit0 <= digit0 + 1;
 				else
 					digit0 <= (others => '0');
 
 					if (digit1 /= "1001") then
-						digit1 <= std_logic_vector(unsigned(digit1) + 1);
+						digit1 <= digit1 + 1;
 					else
 						digit1 <= (others => '0');
 
 						if (digit2 /= "1001") then
-							digit2 <= std_logic_vector(unsigned(digit2) + 1);
+							digit2 <= digit2 + 1;
 						else
 							digit2 <= (others => '0');
 						end if;
