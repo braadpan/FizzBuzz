@@ -29,13 +29,16 @@ architecture rtl of fizzbuzz is
 	signal digit0    : T4bit := (others => '0');
 	signal digit1    : T4bit := (others => '0');
 	signal digit2    : T4bit := (others => '0');
+    
+    signal incrEn    : std_logic := '0';
 
 begin
+    incrEn <= increment when busy = '0' else '0';
 
     bcd : entity work.bcd_counter(rtl)
 		port map(
 			clk       => clk,
-			increment => increment,
+			increment => incrEn,
 			digit0    => digit0,
 			digit1    => digit1,
 			digit2    => digit2);
@@ -57,7 +60,7 @@ begin
 				state <= START;
                 
             elsif (state = IDLE) then
-                if (increment = '1') then
+                if (incrEn = '1') then
                     state <= START;
                 else 
                     state <= IDLE;
@@ -106,7 +109,7 @@ begin
 						when "1001" =>
 							char <= X"7a"; -- z
 						when others => 
-							state <= START;
+							state <= IDLE;
 							send  <= '0';
 					end case;
 					
@@ -123,7 +126,7 @@ begin
 						when "0101" =>
 							char <= X"7a"; -- z
 						when others => 
-							state <= START;
+							state <= IDLE;
 							send  <= '0';
 					end case;
 				elsif (mod5 = "000") then -- Send Buzz
@@ -139,7 +142,7 @@ begin
 						when "0101" =>
 							char <= X"7a"; -- z
 						when others => 
-							state <= START;
+							state <= IDLE;
 							send  <= '0';
 					end case;
 				else
@@ -161,7 +164,7 @@ begin
 						when "0100" =>
 							char  <= "0011" & digit0;
 						when others => 
-							state <= START;
+							state <= IDLE;
 							send  <= '0';
 					end case;
 				end if;

@@ -30,7 +30,6 @@ architecture structure of top is
 	signal busy      : std_logic;
 	
 begin
-    increment <= '0';
 
 	c_fizzbuzz : entity work.fizzbuzz
 		port map(
@@ -53,6 +52,13 @@ begin
 			lcd_rs   => LCD_RS,
 			lcd_rw   => LCD_RW,
 			lcd_data => LCD_DATA);
+            
+    e_pulse : entity work.pulse
+        generic map(
+            DELAY => 1000 ms)
+        port map(
+            clk   => FPGA_CLK1_50,
+            pulse => increment);
 			
 	c_sfl : component sfl
 		port map(

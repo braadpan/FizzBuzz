@@ -26,11 +26,9 @@ architecture rtl of lcd is
 	constant MAX_DELAY  : time := 11 ms;
 	subtype delay_type is natural range 0 to MAX_DELAY / CLK_PERIOD;
 
-	--constant INIT_DELAY : delay_type := 11 ms  / CLK_PERIOD - 1;
-	constant INIT_DELAY : delay_type := 200 ns  / CLK_PERIOD - 1;
+	constant INIT_DELAY : delay_type := 11 ms  / CLK_PERIOD - 1;
     constant E_DELAY    : delay_type := 300 ns / CLK_PERIOD - 1;
-	--constant CMD_DELAY  : delay_type := 2 ms   / CLK_PERIOD - 1;
-	constant CMD_DELAY  : delay_type := 200 ns   / CLK_PERIOD - 1;
+	constant CMD_DELAY  : delay_type := 2 ms   / CLK_PERIOD - 1;
     constant CHAR_DELAY : delay_type := 50 us  / CLK_PERIOD - 1;
 	signal   delay      : delay_type := INIT_DELAY;
 

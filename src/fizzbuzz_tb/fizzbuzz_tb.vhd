@@ -7,41 +7,41 @@ end fizzbuzz_tb;
 
 architecture test of fizzbuzz_tb is
 
-	component fizzbuzz
-		port(
-			clk     : in  std_logic;
-			led     : out std_logic_vector(7 downto 0);
-			char    : out std_logic_vector(7 downto 0);
-			send    : out std_logic;
-			newline : out std_logic;
-			busy    : in  std_logic);
-	end component;
-
 	constant CLK_PERIOD : time := 20 ns;
 	
-	signal clk  : std_logic;
-	signal busy : std_logic;
+	signal clk       : std_logic;
+	signal busy      : std_logic;
+    signal increment : std_logic;
 	
 begin
 
 	-- DUT
-	c_fizzbuzz : component fizzbuzz
+	c_fizzbuzz : entity work.fizzbuzz
 		port map(
-			clk     => clk,
-			led     => open,
-			char    => open,
-			send    => open,
-			newline => open,
-			busy    => busy);
+			clk       => clk,
+			led       => open,
+			char      => open,
+			send      => open,
+			newline   => open,
+            increment => increment,
+			busy      => busy);
 			
 	-- Test process
-	test : process
+	PBusy : process
 	begin
 		busy <= '0';
 		wait for 20 * CLK_PERIOD;
 		busy <= '1';
 		wait for 5 * CLK_PERIOD;
-	end process test;
+	end process;
+    
+    PIncrement : process
+    begin
+        increment <= '0';
+        wait for 60 * CLK_PERIOD;
+		increment <= '1';
+		wait for 1 * CLK_PERIOD;
+	end process;
 	
 	-- Generate CLK signal
 	generate_clk : process
