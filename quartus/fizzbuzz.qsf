@@ -519,6 +519,7 @@ set_global_assignment -name VHDL_FILE ../src/top.vhd
 set_global_assignment -name VHDL_FILE ../src/lcd/lcd.vhd
 set_global_assignment -name VHDL_FILE ../src/fizzbuzz/fizzbuzz.vhd
 set_global_assignment -name VHDL_FILE ../src/fizzbuzz/bcd_counter.vhd
+set_global_assignment -name VHDL_FILE ../src/pulse/pulse.vhd
 set_global_assignment -name ENABLE_OCT_DONE OFF
 set_global_assignment -name ENABLE_CONFIGURATION_PINS OFF
 set_global_assignment -name ENABLE_BOOT_SEL_PIN OFF
