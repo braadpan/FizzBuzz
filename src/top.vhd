@@ -23,25 +23,25 @@ architecture structure of top is
 		);
 	end component sfl;
 	
-	signal char		 : std_logic_vector(7 downto 0);
+	signal char      : std_logic_vector(7 downto 0);
 	signal send      : std_logic;
 	signal newline   : std_logic;
-    signal increment : std_logic;
+	signal increment : std_logic;
 	signal busy      : std_logic;
 	
 begin
 
-	c_fizzbuzz : entity work.fizzbuzz
+	u_fizzbuzz : entity work.fizzbuzz
 		port map(
 			clk       => FPGA_CLK1_50,
 			led       => LED,
 			char      => char,
 			send      => send,
 			newline   => newline,
-            increment => increment,
+			increment => increment,
 			busy      => busy);
 			
-	c_lcd : entity work.lcd
+	u_lcd : entity work.lcd
 		port map(
 			clk      => FPGA_CLK1_50,
 			char     => char,
@@ -53,7 +53,7 @@ begin
 			lcd_rw   => LCD_RW,
 			lcd_data => LCD_DATA);
             
-    e_pulse : entity work.pulse
+	u_pulse : entity work.pulse
         generic map(
             DELAY => 1000 ms)
         port map(
