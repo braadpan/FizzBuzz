@@ -8,10 +8,12 @@ proc s {} {
 	vsim pulse.pulse_tb
 	
 	add wave -position insertpoint sim:/pulse_tb/u_pulse/*
-	run 10 us
+	run 20 us
 }
 
 proc clr {} {
     .main clear
 }
 
+c
+s

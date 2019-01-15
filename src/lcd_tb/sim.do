@@ -15,3 +15,5 @@ proc clr {} {
     .main clear
 }
 
+c 
+s 
