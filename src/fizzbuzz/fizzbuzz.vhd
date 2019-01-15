@@ -6,12 +6,12 @@ use ieee.std_logic_unsigned.all;
 entity fizzbuzz is
 	port(
 		clk       : in  std_logic;
+        increment : in  std_logic;
+		busy      : in  std_logic;
 		led       : out std_logic_vector(7 downto 0);
 		char      : out std_logic_vector(7 downto 0) := (others => '0');
 		send      : out std_logic := '0';
-		newline   : out std_logic := '0';
-        increment : in std_logic;
-		busy      : in  std_logic);
+		newline   : out std_logic := '0');
 end fizzbuzz;
 
 architecture rtl of fizzbuzz is
@@ -50,21 +50,25 @@ begin
 	p_main : process(clk)
 	begin
 		if rising_edge(clk) then
-			send <= '0';
+			send    <= '0';
 			newline <= '0';
-			char <= X"00";
+			char    <= X"00";
+			
+			-- Restart when state = DONE
 			if (state = DONE) then
-				-- Restart when state = DONE
 				mod3  <= (others => '0');
 				mod5  <= (others => '0');
 				state <= START;
                 
+			-- Wait until increment 
             elsif (state = IDLE) then
                 if (incrEn = '1') then
                     state <= START;
                 else 
                     state <= IDLE;
                 end if;
+			
+			-- Start new number
 			elsif (state = START) then
 				-- Finish when counter = 100
 				if (digit2 = "1000" and digit1 = "0000" and digit0 = "0000") then
