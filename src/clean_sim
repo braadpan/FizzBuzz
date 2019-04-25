@@ -1,0 +1,8 @@
+# fizzbuzz_tb
+rm fizzbuzz_tb/transcript fizzbuzz_tb/vsim.wlf fizzbuzz_tb/work -rf
+# lcd_tb
+rm lcd_tb/transcript lcd_tb/vsim.wlf lcd_tb/work -rf
+# pulse_tb
+rm pulse_tb/transcript pulse_tb/vsim.wlf pulse_tb/work -rf 
+# system_tb
+rm system_tb/transcript system_tb/vsim.wlf system_tb/work -rf
