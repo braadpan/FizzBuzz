@@ -32,7 +32,10 @@ architecture rtl of fizzbuzz is
     
     signal incrEn    : std_logic := '0';
 
+    signal ledOn : std_logic := '0';
+
 begin
+
     incrEn <= increment when busy = '0' else '0';
 
     bcd : entity work.bcd_counter(rtl)
@@ -45,8 +48,19 @@ begin
             
 	-- Show signals on the LEDs
 	led(3 downto 0) <= state;
-	led(7 downto 4) <= digit1;
+	--led(7 downto 4) <= digit1;
+
+	led(7) <= ledOn;
 	
+	p_blink : process(clk)
+	begin
+		if rising_edge(clk) then
+			if increment then
+				ledOn <= not ledOn;
+			end if;
+		end if;
+	end process;
+
 	p_main : process(clk)
 	begin
 		if rising_edge(clk) then
