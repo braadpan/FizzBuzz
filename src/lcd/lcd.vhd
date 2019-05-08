@@ -11,22 +11,22 @@ entity lcd is
 		send     : in std_logic;
 		newline  : in std_logic;
 		busy     : out std_logic := '0';
-		lcd_e    : out std_logic := '0';
-		lcd_rs   : out std_logic := '0';
-		lcd_rw   : out std_logic := '0';
+		lcd_e    : out std_logic := '0'; -- Start read/write 
+		lcd_rs   : out std_logic := '0'; -- Register select: 0 instruction, 1 data
+		lcd_rw   : out std_logic := '0'; -- Always in write mode
 		lcd_data : out std_logic_vector(7 downto 0) := (others => '0'));
 end lcd;
 
 architecture rtl of lcd is
 
-	type state_type is (INIT0, INIT1, IDLE, NL_E, DATA_E, WRITE);
-	signal state   : state_type := INIT0;
+	type state_type is (INIT_PU, INIT_FU, INIT_EM, IDLE, NL_E, DATA_E, WRITE);
+	signal state   : state_type := INIT_PU;
 	
 	constant CLK_PERIOD : time := 20 ns;
-	constant MAX_DELAY  : time := 11 ms;
+	constant MAX_DELAY  : time := 30 ms;
 	subtype delay_type is natural range 0 to MAX_DELAY / CLK_PERIOD;
 
-	constant INIT_DELAY : delay_type := 11 ms  / CLK_PERIOD - 1;
+	constant INIT_DELAY : delay_type := 30 ms  / CLK_PERIOD - 1;
     constant E_DELAY    : delay_type := 300 ns / CLK_PERIOD - 1;
 	constant CMD_DELAY  : delay_type := 2 ms   / CLK_PERIOD - 1;
     constant CHAR_DELAY : delay_type := 50 us  / CLK_PERIOD - 1;
@@ -43,30 +43,33 @@ begin
 			end if;
 			
 			case (state) is
-			when INIT0 => -- Wait 11 ms for LCD reset
+			when INIT_PU => -- Wait 30 ms for LCD power up
 				if (delay = 0) then
 					delay <= E_DELAY;
-					state <= INIT1;
+					state <= INIT_FU;
 				else 
-					state <= INIT0;
+					state <= INIT_PU;
 				end if;
-			
-			when INIT1 => -- Turn on display enable
+
+			when INIT_FU => -- Turn on display enable, cursor on, blinking on
 				lcd_e		<= '1';
-				lcd_data <= "00001100";
+				lcd_data <= "00001111";
 				
 				if (delay = 0) then
 					delay <= CMD_DELAY;
 					state <= WRITE;
 				else 
-					state <= INIT1;
+					state <= INIT_FU;
 				end if;
+				
+			when INIT_EM => -- Set Entry mode
+			
 				
 			when IDLE => -- Wait for new character
 				if (newline = '1') then
 					delay    <= E_DELAY;
                     lcd_e		<= '1';
-                    lcd_data <= "00000001";
+                    lcd_data <= "00000001"; -- Clears display
 					state    <= NL_E;
 				elsif (send = '1') then
 					delay    <= E_DELAY;
