@@ -513,13 +513,6 @@ set_location_assignment PIN_Y24 -to SW[0]
 set_location_assignment PIN_W24 -to SW[1]
 set_location_assignment PIN_W21 -to SW[2]
 set_location_assignment PIN_W20 -to SW[3]
-set_global_assignment -name QSYS_FILE ip/sfl.qsys
-set_global_assignment -name SDC_FILE fizzbuzz.sdc
-set_global_assignment -name VHDL_FILE ../src/top.vhd
-set_global_assignment -name VHDL_FILE ../src/lcd/lcd.vhd
-set_global_assignment -name VHDL_FILE ../src/fizzbuzz/fizzbuzz.vhd
-set_global_assignment -name VHDL_FILE ../src/fizzbuzz/bcd_counter.vhd
-set_global_assignment -name VHDL_FILE ../src/pulse/pulse.vhd
 set_global_assignment -name ENABLE_OCT_DONE OFF
 set_global_assignment -name ENABLE_CONFIGURATION_PINS OFF
 set_global_assignment -name ENABLE_BOOT_SEL_PIN OFF
@@ -532,4 +525,11 @@ set_global_assignment -name OUTPUT_IO_TIMING_NEAR_END_VMEAS "HALF VCCIO" -fall
 set_global_assignment -name OUTPUT_IO_TIMING_FAR_END_VMEAS "HALF SIGNAL SWING" -rise
 set_global_assignment -name OUTPUT_IO_TIMING_FAR_END_VMEAS "HALF SIGNAL SWING" -fall
 set_global_assignment -name ACTIVE_SERIAL_CLOCK FREQ_100MHZ
+set_global_assignment -name VHDL_FILE ../src/top/top.vhd
+set_global_assignment -name QSYS_FILE ip/sfl.qsys
+set_global_assignment -name SDC_FILE fizzbuzz.sdc
+set_global_assignment -name VHDL_FILE ../src/lcd/lcd.vhd
+set_global_assignment -name VHDL_FILE ../src/fizzbuzz/fizzbuzz.vhd
+set_global_assignment -name VHDL_FILE ../src/fizzbuzz/bcd_counter.vhd
+set_global_assignment -name VHDL_FILE ../src/pulse/pulse.vhd
 set_instance_assignment -name PARTITION_HIERARCHY root_partition -to | -section_id Top
